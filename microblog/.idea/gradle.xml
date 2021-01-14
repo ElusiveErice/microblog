@@ -8,6 +8,12 @@
         <option name="distributionType" value="LOCAL" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="gradleHome" value="E:/迅雷下载/gradle-6.5" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/app" />
+          </set>
+        </option>
         <option name="resolveModulePerSourceSet" value="false" />
         <option name="useQualifiedModuleNames" value="true" />
       </GradleProjectSettings>
