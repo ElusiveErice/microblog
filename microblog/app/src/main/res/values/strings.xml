@@ -7,4 +7,19 @@
     <string name="password_hint">请输入密码</string>
     <string name="login">登录</string>
     <string name="register">注册</string>
+    <string name="return_login">返回登录</string>
+    <string name="copy">复制</string>
+    <string name="register_success">注册成功</string>
+    <string name="account_demo">100000000</string>
+    <string name="please_remember_your_account">请记住你的账号</string>
+    <string name="list">列表</string>
+    <string name="message">消息</string>
+    <string name="me">我</string>
+    <string name="microblog_list">微博列表</string>
+    <string name="personal_center">个人中心</string>
+    <string name="user_name">用户名</string>
+    <string name="brief_introduction">简介：暂无简介</string>
+    <string name="microblog">微博</string>
+    <string name="focus">关注</string>
+    <string name="fans">粉丝</string>
 </resources>
