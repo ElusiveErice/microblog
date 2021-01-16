@@ -5,4 +5,12 @@
         <item name="android:textColor">@android:color/background_dark</item>
         <item name="android:gravity">center</item>
     </style>
+
+    <style name="buttonStyle" parent="Widget.AppCompat.Button">
+       <item name="android:background">@drawable/rounded_rectangle</item>
+    </style>
+
+    <style name="editTextStyle" parent="Widget.AppCompat.EditText">
+        <item name="android:background">@drawable/rounded_rectangle</item>
+    </style>
 </resources>
