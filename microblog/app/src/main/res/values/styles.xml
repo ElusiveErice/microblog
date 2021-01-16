@@ -1,0 +1,8 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="simpleTextViewStyle" parent="">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@android:color/background_dark</item>
+        <item name="android:gravity">center</item>
+    </style>
+</resources>
