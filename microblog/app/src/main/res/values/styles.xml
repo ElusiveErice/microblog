@@ -7,11 +7,11 @@
     </style>
 
     <style name="titleBarStyle">
-        <item name="android:paddingTop">30dp</item>
-        <item name="android:paddingLeft">50dp</item>
+        <item name="android:id">@id/rl_title_bar</item>
+        <item name="android:paddingTop">20dp</item>
+        <item name="android:paddingLeft">10dp</item>
         <item name="android:paddingRight">10dp</item>
         <item name="android:paddingBottom">20dp</item>
-        <item name="android:orientation">horizontal</item>
         <item name="android:background">@color/green</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
@@ -27,5 +27,13 @@
     <style name="iconRBStyle">
         <item name="android:gravity">center</item>
         <item name="android:button">@null</item>
+    </style>
+
+    <style name="pageButtonStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@color/white</item>
+        <item name="android:foreground">?android:attr/selectableItemBackground</item>
+        <item name="android:layout_marginBottom">5dp</item>
     </style>
 </resources>

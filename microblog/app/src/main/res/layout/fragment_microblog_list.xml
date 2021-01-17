@@ -4,17 +4,17 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <LinearLayout style="@style/titleBarStyle">
+    <RelativeLayout style="@style/titleBarStyle">
 
         <TextView
+            android:layout_centerInParent="true"
             style="@style/titleTextStyle"
             android:text="@string/microblog_list" />
 
         <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
             android:orientation="horizontal">
 
             <ImageButton
@@ -35,7 +35,7 @@
                 android:src="@drawable/ic_add" />
         </LinearLayout>
 
-    </LinearLayout>
+    </RelativeLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_microblogs"

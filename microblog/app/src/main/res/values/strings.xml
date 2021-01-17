@@ -22,4 +22,19 @@
     <string name="microblog">微博</string>
     <string name="focus">关注</string>
     <string name="fans">粉丝</string>
+    <string name="send_time_demo">1-14 21:54</string>
+    <string name="microblog_content">微博内容</string>
+    <string name="microblog_body">微博正文</string>
+    <string name="transmit">转发</string>
+    <string name="comment">评论</string>
+    <string name="send">发送</string>
+    <string name="send_microblog">发微博</string>
+    <string name="setting">设置</string>
+    <string name="modify_info">修改信息</string>
+    <string name="modify_password">修改密码</string>
+    <string name="switch_account">切换账号</string>
+    <string name="exit_microblog">退出微博</string>
+    <string name="modify">修改</string>
+    <string name="new_password">新密码</string>
+    <string name="old_password">旧密码</string>
 </resources>
