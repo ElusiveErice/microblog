@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout style="@style/titleBarStyle">
+
+        <ImageButton
+            android:id="@+id/ibt_return"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:src="@drawable/ic_return" />
+
+        <TextView
+            style="@style/titleTextStyle"
+            android:layout_centerInParent="true"
+            android:layout_height="wrap_content"
+            android:text="@string/setting" />
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rl_title_bar">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <Button
+                style="@style/pageButtonStyle"
+                android:id="@+id/bt_modify_info"
+                android:text="@string/modify_info" />
+
+            <Button
+                style="@style/pageButtonStyle"
+                android:id="@+id/bt_modify_password"
+                android:text="@string/modify_password" />
+
+            <Button
+                style="@style/pageButtonStyle"
+                android:id="@+id/bt_switch_account"
+                android:text="@string/switch_account" />
+
+            <Button
+                android:id="@+id/bt_exit_microblog"
+                style="@style/pageButtonStyle"
+                android:text="@string/exit_microblog" />
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>
