@@ -2,77 +2,96 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/login_background"
     android:orientation="vertical">
 
     <TextView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="注册" />
+        android:layout_margin="40dp"
+        android:text="@string/register"
+        android:textSize="36sp" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:orientation="horizontal">
 
 
-        <com.csu.microblog.views.CircleImageView
-            android:src="@drawable/default_head_portrait"
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-            android:layout_width="100dp"
-            android:layout_height="100dp" />
+            <com.csu.microblog.views.CircleImageView
+                android:id="@+id/head_portrait"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/default_head_portrait" />
+
+            <ImageButton
+                android:id="@+id/ibt_camera"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_camera" />
+        </LinearLayout>
+
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
                 android:orientation="horizontal">
 
                 <TextView
                     style="@style/simpleTextViewStyle"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:minEms="3"
-                    android:text="用户名" />
+                    android:text="@string/user_name" />
 
                 <EditText
+                    android:id="@+id/et_user_name"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:hint="请输入用户名" />
+                    android:layout_height="wrap_content"
+                    android:hint="@string/please_input_user_name"
+                    android:maxEms="8"
+                    android:minEms="8" />
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
                 <TextView
                     style="@style/simpleTextViewStyle"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:minEms="3"
-                    android:text="性别" />
+                    android:text="@string/sex" />
 
                 <RadioGroup
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
                     <RadioButton
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:text="男" />
+                        android:layout_height="wrap_content"
+                        android:text="@string/male" />
 
                     <RadioButton
                         style="@style/Widget.AppCompat.CompoundButton.RadioButton"
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:text="女" />
+                        android:layout_height="wrap_content"
+                        android:text="@string/female" />
                 </RadioGroup>
             </LinearLayout>
         </LinearLayout>
@@ -81,38 +100,43 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
         android:orientation="horizontal">
 
         <TextView
             style="@style/simpleTextViewStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="登录密码" />
+            android:text="@string/login_password" />
 
         <EditText
+            android:id="@+id/et_password"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="请输入密码" />
+            android:hint="@string/please_input_password"
+            android:maxEms="10"
+            android:minEms="10" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
+        android:gravity="center"
         android:orientation="horizontal">
 
         <TextView
             style="@style/simpleTextViewStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="再次确认" />
+            android:text="@string/confirm_again" />
 
         <EditText
+            android:id="@+id/et_confirm_password"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="再次输入密码" />
+            android:hint="@string/input_password_again"
+            android:maxEms="10"
+            android:minEms="10" />
     </LinearLayout>
 </LinearLayout>

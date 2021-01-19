@@ -1,37 +1,46 @@
 package com.csu.microblog.retrofit;
 
-import android.util.Log;
-
-import com.csu.microblog.retrofit.api.TestService;
-
-import java.io.IOException;
-
-import okhttp3.ResponseBody;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
-import rx.Observable;
-import rx.Observer;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
 
 public class RetrofitManager {
+    public static final String LocalIP = "http://10.0.2.2:8080/";
+    public static final String TestIP = "http://192.168.1.105:8080/";
+    public static final String IP = TestIP;
+    public static final String MICROBLOG = IP;
 
-    public Retrofit retrofit;
+    private static RetrofitManager retrofitManager;
 
-    public RetrofitManager(String url) {
-        retrofit = new Retrofit.Builder()
+    private RetrofitManager(){
+
+    }
+
+    public static RetrofitManager getRetrofitManager(){
+        if(retrofitManager == null){
+            synchronized (RetrofitManager.class){
+                if(retrofitManager == null){
+                    retrofitManager = new RetrofitManager();
+                }
+            }
+        }
+        return retrofitManager;
+    }
+
+    public Retrofit getMicroblogRetrofit(){
+        Retrofit retrofit = new Retrofit.Builder()
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .baseUrl(url)
+                .baseUrl(MICROBLOG)
                 .build();
+        return retrofit;
     }
 
-    public void test(Observer<ResponseBody> observer) {
-        Observable<ResponseBody> observable = retrofit.create(TestService.class).test();
-        observable.subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(observer);
-    }
+//    public void test(Observer<ResponseBody> observer) {
+//        Observable<ResponseBody> observable = retrofit.create(TestService.class).test();
+//        observable.subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(observer);
+//    }
 
 }

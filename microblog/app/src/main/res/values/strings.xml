@@ -37,4 +37,12 @@
     <string name="modify">修改</string>
     <string name="new_password">新密码</string>
     <string name="old_password">旧密码</string>
+    <string name="please_input_user_name">请输入用户名</string>
+    <string name="sex">性别</string>
+    <string name="male">男</string>
+    <string name="female">女</string>
+    <string name="login_password">登录密码</string>
+    <string name="confirm_again">再次确认</string>
+    <string name="input_password_again">再次输入密码</string>
+    <string name="please_input_password">请输入密码</string>
 </resources>

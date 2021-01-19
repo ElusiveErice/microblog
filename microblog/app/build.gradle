@@ -39,5 +39,7 @@ dependencies {
     api 'com.squareup.retrofit2:retrofit:2.3.0'
     api 'com.squareup.retrofit2:adapter-rxjava:2.3.0'
     api 'io.reactivex:rxandroid:1.2.1'
-    compile 'com.squareup.retrofit2:converter-gson:2.3.0'
+    api 'com.squareup.retrofit2:converter-gson:2.3.0'
+    provided "org.projectlombok:lombok:1.16.18"
+    api 'org.glassfish:javax.annotation:10.0-b28'
 }
