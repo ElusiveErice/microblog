@@ -3,7 +3,7 @@ package com.csu.microblog.model.user.login;
 public class LoginResponseBody {
     private int code;
     private String message;
-    private Result result;
+    private LoginData data;
 
     public int getCode() {
         return code;
@@ -21,11 +21,11 @@ public class LoginResponseBody {
         this.message = message;
     }
 
-    public Result getResult() {
-        return result;
+    public LoginData getData() {
+        return data;
     }
 
-    public void setResult(Result result) {
-        this.result = result;
+    public void setData(LoginData data) {
+        this.data = data;
     }
 }

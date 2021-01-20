@@ -1,7 +1,9 @@
 package com.csu.microblog.model.user.login;
 
-public class LoginRequestBody {
+import lombok.Data;
 
+
+public class LoginRequestBody {
     private long account;
     private String password;
 
