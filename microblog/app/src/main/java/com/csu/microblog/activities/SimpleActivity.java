@@ -6,8 +6,9 @@ import android.view.View;
 import android.view.WindowManager;
 
 import androidx.annotation.Nullable;
+import androidx.fragment.app.FragmentActivity;
 
-public abstract class SimpleActivity extends Activity {
+public abstract class SimpleActivity extends FragmentActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -20,4 +21,5 @@ public abstract class SimpleActivity extends Activity {
     protected abstract int getContentView();
 
     protected abstract void findView();
+
 }

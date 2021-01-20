@@ -1,6 +1,9 @@
 package com.csu.microblog.model.user.login;
 
-public class Result {
+import lombok.Data;
+
+
+public class LoginData {
     private boolean result;
     private UserInfo userInfo;
 

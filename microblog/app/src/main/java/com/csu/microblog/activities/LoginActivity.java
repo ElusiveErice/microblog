@@ -12,7 +12,7 @@ import com.csu.microblog.MainApplication;
 import com.csu.microblog.R;
 import com.csu.microblog.model.user.login.LoginRequestBody;
 import com.csu.microblog.model.user.login.LoginResponseBody;
-import com.csu.microblog.model.user.login.Result;
+import com.csu.microblog.model.user.login.LoginData;
 import com.csu.microblog.retrofit.RetrofitManager;
 import com.csu.microblog.retrofit.api.MicroblogService;
 
@@ -80,10 +80,14 @@ public class LoginActivity extends SimpleActivity {
                         @Override
                         public void onNext(LoginResponseBody loginResponseBody) {
                             int code = loginResponseBody.getCode();
+                            if(loginResponseBody==null){
+                                Log.i(TAG,"Error");
+                            }
+
                             if(code != 0){
                                 Log.e(TAG, loginResponseBody.getMessage());
                             }else{
-                                Result result = loginResponseBody.getResult();
+                                LoginData result = loginResponseBody.getData();
                                 if(result.isResult()){
                                     Log.i(TAG,"登录成功");
                                     MainApplication mainApplication = (MainApplication)getApplication();

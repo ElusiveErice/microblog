@@ -4,7 +4,7 @@
     android:layout_height="match_parent">
 
     <FrameLayout
-        android:id="@+id/fl_main"
+        android:id="@+id/fragment_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/rg_bottom" />
@@ -14,7 +14,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="@android:color/darker_gray"
+        android:background="#EFEDE9"
+        android:paddingTop="5dp"
         android:orientation="horizontal">
 
         <RadioButton
@@ -36,7 +37,7 @@
             android:text="@string/message" />
 
         <RadioButton
-            android:id="@+id/rb_me"
+            android:id="@+id/rb_person"
             style="@style/iconRBStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
