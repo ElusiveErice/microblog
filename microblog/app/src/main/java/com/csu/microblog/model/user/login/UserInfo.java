@@ -1,7 +1,9 @@
 package com.csu.microblog.model.user.login;
 
-public class UserInfo {
+import lombok.Data;
 
+
+public class UserInfo {
     private long account;
     private String message;
 
