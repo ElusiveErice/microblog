@@ -16,11 +16,9 @@
 
     <style name="titleBarStyle">
         <item name="android:id">@id/rl_title_bar</item>
-        <item name="android:paddingTop">20dp</item>
         <item name="android:paddingLeft">10dp</item>
         <item name="android:paddingRight">10dp</item>
-        <item name="android:paddingBottom">20dp</item>
-        <item name="android:background">@color/green</item>
+        <item name="android:background">@color/purple_700</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
     </style>
@@ -30,6 +28,7 @@
         <item name="android:textColor">@android:color/white</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_margin">10dp</item>
     </style>
 
     <style name="iconRBStyle">
@@ -43,5 +42,11 @@
         <item name="android:background">@color/white</item>
         <item name="android:foreground">?android:attr/selectableItemBackground</item>
         <item name="android:layout_marginBottom">5dp</item>
+    </style>
+
+    <style name="optionButtonStyle" parent="Widget.AppCompat.Button">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/simple_border</item>
     </style>
 </resources>

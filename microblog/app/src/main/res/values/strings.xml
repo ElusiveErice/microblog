@@ -45,4 +45,6 @@
     <string name="confirm_again">再次确认</string>
     <string name="input_password_again">再次输入密码</string>
     <string name="please_input_password">请输入密码</string>
+    <string name="take_photos">拍照</string>
+    <string name="photo_album">相册</string>
 </resources>

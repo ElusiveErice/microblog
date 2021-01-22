@@ -16,6 +16,11 @@ public abstract class SimpleActivity extends FragmentActivity {
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         setContentView(getContentView());
         findView();
+        initListener();
+    }
+
+    protected void initListener(){
+
     }
 
     protected abstract int getContentView();
