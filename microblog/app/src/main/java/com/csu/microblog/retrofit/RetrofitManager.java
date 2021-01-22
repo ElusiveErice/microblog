@@ -6,20 +6,21 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitManager {
     public static final String LocalIP = "http://10.0.2.2:8080/";
-    public static final String TestIP = "http://192.168.1.105:8080/";
-    public static final String IP = TestIP;
+    public static final String LIU_IP = "http://192.168.1.105:8080/";
+    public static final String XIANG_IP = "http://192.168.1.110:8080/";
+    public static final String IP = XIANG_IP;
     public static final String MICROBLOG = IP;
 
     private static RetrofitManager retrofitManager;
 
-    private RetrofitManager(){
+    private RetrofitManager() {
 
     }
 
-    public static RetrofitManager getRetrofitManager(){
-        if(retrofitManager == null){
-            synchronized (RetrofitManager.class){
-                if(retrofitManager == null){
+    public static RetrofitManager getRetrofitManager() {
+        if (retrofitManager == null) {
+            synchronized (RetrofitManager.class) {
+                if (retrofitManager == null) {
                     retrofitManager = new RetrofitManager();
                 }
             }
@@ -27,7 +28,7 @@ public class RetrofitManager {
         return retrofitManager;
     }
 
-    public Retrofit getMicroblogRetrofit(){
+    public Retrofit getMicroblogRetrofit() {
         Retrofit retrofit = new Retrofit.Builder()
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
@@ -35,12 +36,4 @@ public class RetrofitManager {
                 .build();
         return retrofit;
     }
-
-//    public void test(Observer<ResponseBody> observer) {
-//        Observable<ResponseBody> observable = retrofit.create(TestService.class).test();
-//        observable.subscribeOn(Schedulers.io())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribe(observer);
-//    }
-
 }

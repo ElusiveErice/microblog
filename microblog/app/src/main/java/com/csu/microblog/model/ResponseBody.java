@@ -1,9 +1,10 @@
-package com.csu.microblog.model.user.login;
+package com.csu.microblog.model;
 
-public class LoginResponseBody {
+public class ResponseBody<D> {
+
     private int code;
     private String message;
-    private LoginData data;
+    private D data;
 
     public int getCode() {
         return code;
@@ -21,11 +22,11 @@ public class LoginResponseBody {
         this.message = message;
     }
 
-    public LoginData getData() {
+    public D getData() {
         return data;
     }
 
-    public void setData(LoginData data) {
+    public void setData(D data) {
         this.data = data;
     }
 }

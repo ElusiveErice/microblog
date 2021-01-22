@@ -7,14 +7,15 @@
     <RelativeLayout style="@style/titleBarStyle">
 
         <TextView
-            android:layout_centerInParent="true"
             style="@style/titleTextStyle"
+            android:layout_centerInParent="true"
             android:text="@string/microblog_list" />
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
             android:orientation="horizontal">
 
             <ImageButton
@@ -40,5 +41,5 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_microblogs"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content" />
 </LinearLayout>
