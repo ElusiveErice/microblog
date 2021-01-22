@@ -75,6 +75,7 @@
                         android:id="@+id/rb_male"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:checked="true"
                         android:text="@string/male" />
 
                     <RadioButton
@@ -106,6 +107,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="@string/please_input_password"
+            android:inputType="textPassword"
             android:maxEms="10"
             android:minEms="10" />
     </LinearLayout>
@@ -127,6 +129,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="@string/input_password_again"
+            android:inputType="textPassword"
             android:maxEms="10"
             android:minEms="10" />
     </LinearLayout>

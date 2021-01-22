@@ -47,4 +47,9 @@
     <string name="please_input_password">请输入密码</string>
     <string name="take_photos">拍照</string>
     <string name="photo_album">相册</string>
+    <string name="error_user_name_null">用户名不能为空</string>
+    <string name="error_account_null">账号不能为空</string>
+    <string name="error_password_null">密码不能为空</string>
+    <string name="error_password_confirm">密码确认错误</string>
+    <string name="loading">正在登录中</string>
 </resources>

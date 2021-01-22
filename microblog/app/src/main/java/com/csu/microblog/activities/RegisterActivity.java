@@ -24,7 +24,7 @@ import com.csu.microblog.retrofit.RetrofitManager;
 import com.csu.microblog.retrofit.api.UserService;
 import com.csu.microblog.utils.FileUtils;
 import com.csu.microblog.utils.PictureUtils;
-import com.csu.microblog.utils.ToastUtil;
+import com.csu.microblog.utils.SimpleViewBuilder;
 import com.csu.microblog.views.CircleImageView;
 
 import java.io.File;
@@ -37,6 +37,7 @@ import okhttp3.RequestBody;
 import rx.Observer;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
+
 
 public class RegisterActivity extends SimpleActivity {
 
@@ -91,17 +92,26 @@ public class RegisterActivity extends SimpleActivity {
 
             userName = mETUserName.getText().toString();
             if (userName.equals("")) {
-                ToastUtil.newToast(RegisterActivity.this, "请填写用户名", Toast.LENGTH_LONG);
+                mETUserName.setHint(R.string.error_user_name_null);
+                mETUserName.setHintTextColor(getResources().getColor(R.color.red));
                 return;
             }
             password = mETPassword.getText().toString();
             if (password.equals("")) {
-                ToastUtil.newToast(RegisterActivity.this, "请设置密码", Toast.LENGTH_LONG);
+                mETPassword.setHint(R.string.error_password_null);
+                mETPassword.setHintTextColor(getResources().getColor(R.color.red));
                 return;
             }
             confirmPassword = mETConfirmPassword.getText().toString();
+            if (confirmPassword.equals("")) {
+                mETConfirmPassword.setHint(R.string.error_password_null);
+                mETConfirmPassword.setHintTextColor(getResources().getColor(R.color.red));
+                return;
+            }
             if (!password.equals(confirmPassword)) {
-                ToastUtil.newToast(RegisterActivity.this, "密码确认错误", Toast.LENGTH_LONG);
+                mETConfirmPassword.setText("");
+                mETConfirmPassword.setHint(R.string.error_password_confirm);
+                mETConfirmPassword.setHintTextColor(getResources().getColor(R.color.red));
                 return;
             }
             if (mRGSex.getCheckedRadioButtonId() == R.id.rb_male) {
@@ -109,8 +119,7 @@ public class RegisterActivity extends SimpleActivity {
             } else if (mRGSex.getCheckedRadioButtonId() == R.id.rb_female) {
                 sex = getResources().getInteger(R.integer.female);
             } else {
-                ToastUtil.newToast(RegisterActivity.this, "请选择性别", Toast.LENGTH_LONG);
-                return;
+                sex = getResources().getInteger(R.integer.male);
             }
 
             try {
@@ -120,12 +129,12 @@ public class RegisterActivity extends SimpleActivity {
                         bitmap, UUID.randomUUID().toString() + "_portrait.png");
                 mCIVPortrait.setDrawingCacheEnabled(false);
             } catch (IOException e) {
-                ToastUtil.newToast(RegisterActivity.this, "头像读写错误", Toast.LENGTH_LONG);
+                SimpleViewBuilder.newToast(RegisterActivity.this, "头像读写错误", Toast.LENGTH_LONG);
                 Log.e(TAG, e.getLocalizedMessage());
                 return;
             }
 
-            handleLoginResult(userName, password, sex, portraitFile);
+            handleLogin(userName, password, sex, portraitFile);
         });
         mCIVPortrait.setOnClickListener(v -> mADCamera.show());
         mBTTakePhotos.setOnClickListener(v -> {
@@ -153,7 +162,7 @@ public class RegisterActivity extends SimpleActivity {
             Bundle bundle = data.getExtras();
             Bitmap bitmap = (Bitmap) bundle.get("data");
             mCIVPortrait.setImageBitmap(bitmap);
-        }else if(requestCode == REQUEST_PICK_PICTURE){
+        } else if (requestCode == REQUEST_PICK_PICTURE) {
             Uri uri = data.getData();
             try {
                 mCIVPortrait.setImageBitmap(PictureUtils.getBitmapFormUri(uri, this));
@@ -163,7 +172,7 @@ public class RegisterActivity extends SimpleActivity {
         }
     }
 
-    private void handleLoginResult(String userName, String password, int sex, File portraitFile) {
+    private void handleLogin(String userName, String password, int sex, File portraitFile) {
         RequestBody userNameBody = RequestBody.create(MediaType.parse("multipart/form-data"), userName);
         RequestBody passwordBody = RequestBody.create(MediaType.parse("multipart/form-data"), password);
         RequestBody sexBody = RequestBody.create(MediaType.parse("multipart/form-data"), String.valueOf(sex));
@@ -212,3 +221,8 @@ public class RegisterActivity extends SimpleActivity {
 
     }
 }
+
+
+//TODO
+//点击注册后添加一个loading的dialog
+//后端返回注册失败改用Dialog来通知

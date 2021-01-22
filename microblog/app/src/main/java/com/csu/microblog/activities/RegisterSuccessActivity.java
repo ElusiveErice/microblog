@@ -12,7 +12,7 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 
 import com.csu.microblog.R;
-import com.csu.microblog.utils.ToastUtil;
+import com.csu.microblog.utils.SimpleViewBuilder;
 
 public class RegisterSuccessActivity extends SimpleActivity {
 
@@ -47,7 +47,7 @@ public class RegisterSuccessActivity extends SimpleActivity {
             ClipboardManager cm = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
             ClipData mClipData = ClipData.newPlainText("Label", String.valueOf(account));
             cm.setPrimaryClip(mClipData);
-            ToastUtil.newToast(RegisterSuccessActivity.this, "复制" + account, Toast.LENGTH_SHORT);
+            SimpleViewBuilder.newToast(RegisterSuccessActivity.this, "复制" + account, Toast.LENGTH_SHORT);
         });
         mBTReturnLogin.setOnClickListener(v -> {
             RegisterSuccessActivity.this.finish();
