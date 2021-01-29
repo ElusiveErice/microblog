@@ -2,6 +2,7 @@ package com.csu.microblog.activities;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -134,7 +135,7 @@ public class RegisterActivity extends SimpleActivity {
                 return;
             }
 
-            handleLogin(userName, password, sex, portraitFile);
+            handleRegister(userName, password, sex, portraitFile);
         });
         mCIVPortrait.setOnClickListener(v -> mADCamera.show());
         mBTTakePhotos.setOnClickListener(v -> {
@@ -172,7 +173,9 @@ public class RegisterActivity extends SimpleActivity {
         }
     }
 
-    private void handleLogin(String userName, String password, int sex, File portraitFile) {
+    private void handleRegister(String userName, String password, int sex, File portraitFile) {
+        Dialog registerLoadingDialog = SimpleViewBuilder.newMessageDialog(this, "正在注册中", false);
+        registerLoadingDialog.show();
         RequestBody userNameBody = RequestBody.create(MediaType.parse("multipart/form-data"), userName);
         RequestBody passwordBody = RequestBody.create(MediaType.parse("multipart/form-data"), password);
         RequestBody sexBody = RequestBody.create(MediaType.parse("multipart/form-data"), String.valueOf(sex));
@@ -184,36 +187,36 @@ public class RegisterActivity extends SimpleActivity {
                 .register(userNameBody, passwordBody, sexBody, portraitBody)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<ResponseBody>() {
+                .subscribe(new Observer<ResponseBody<RegisterData>>() {
                     @Override
                     public void onCompleted() {
-
+                        registerLoadingDialog.dismiss();
                     }
 
                     @Override
                     public void onError(Throwable e) {
-
+                        Log.e(TAG, e.toString());
+                        registerLoadingDialog.dismiss();
+                        SimpleViewBuilder.newConfirmDialog(RegisterActivity.this, "网络异常").show();
                     }
 
                     @Override
                     public void onNext(ResponseBody responseBody) {
                         int code = responseBody.getCode();
-                        if (responseBody == null) {
-                            Log.i(TAG, "Error");
-                        }
                         Log.i(TAG, "code:" + responseBody.getData());
                         if (code != 0) {
                             Log.e(TAG, responseBody.getMessage());
                         } else {
-                            RegisterData data = (RegisterData) responseBody.getData();
-                            if (data.isRegister()) {
-                                Log.i(TAG, "注册成功,账号:" + data.getAccount());
+                            RegisterData registerData = (RegisterData) responseBody.getData();
+                            if (registerData.isRegister()) {
+                                Log.i(TAG, "注册成功,账号:" + registerData.getAccount());
                                 Intent intent =
-                                        RegisterSuccessActivity.newIntent(RegisterActivity.this, data.getAccount());
+                                        RegisterSuccessActivity.newIntent(RegisterActivity.this, registerData.getAccount());
                                 startActivity(intent);
                                 RegisterActivity.this.finish();
                             } else {
-                                Log.e(TAG, data.getMessage());
+                                Log.e(TAG, registerData.getMessage());
+                                SimpleViewBuilder.newConfirmDialog(RegisterActivity.this, registerData.getMessage()).show();
                             }
                         }
                     }
@@ -221,8 +224,3 @@ public class RegisterActivity extends SimpleActivity {
 
     }
 }
-
-
-//TODO
-//点击注册后添加一个loading的dialog
-//后端返回注册失败改用Dialog来通知

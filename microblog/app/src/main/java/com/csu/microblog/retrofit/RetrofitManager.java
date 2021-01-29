@@ -7,7 +7,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RetrofitManager {
     public static final String LocalIP = "http://10.0.2.2:8080/";
     public static final String LIU_IP = "http://192.168.1.105:8080/";
-    public static final String XIANG_IP = "http://192.168.1.110:8080/";
+    public static final String XIANG_IP = "http://192.168.0.102:8080/";
     public static final String IP = XIANG_IP;
     public static final String MICROBLOG = IP;
 

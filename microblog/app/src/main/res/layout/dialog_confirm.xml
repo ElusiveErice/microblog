@@ -4,7 +4,8 @@
     android:layout_height="wrap_content"
     android:layout_margin="20dp"
     android:background="@drawable/loading_background"
-    android:gravity="center_horizontal">
+    android:orientation="vertical"
+    android:padding="40dp">
 
     <TextView
         android:id="@+id/tv_message"
@@ -14,4 +15,12 @@
         android:text="@string/message"
         android:textColor="@color/black"
         android:textSize="28sp" />
+
+    <Button
+        android:id="@+id/bt_confirm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:text="@string/confirm" />
 </LinearLayout>
