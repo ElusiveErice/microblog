@@ -21,6 +21,14 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+        xiangpengfei {
+            debuggable true
+            signingConfig signingConfigs.debug
+        }
+        liuqian {
+            debuggable true
+            signingConfig signingConfigs.debug
+        }
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
