@@ -1,6 +1,7 @@
 package com.csu.microblog.activities;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -14,6 +15,8 @@ import com.csu.microblog.fragments.PersonFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class HomepageActivity extends FragmentActivity {
+
+    private static final String TAG = "HomepageActivity";
 
     private FragmentManager fragmentManager;
     private Fragment onDisplayFragment;
@@ -57,10 +60,13 @@ public class HomepageActivity extends FragmentActivity {
 
             if (menuItem.getItemId() == R.id.item_microblog_list) {
                 onDisplayFragment = microblogListFragment;
+                Log.i(TAG, "点击了首页");
             } else if (menuItem.getItemId() == R.id.item_message) {
                 onDisplayFragment = messageFragment;
+                Log.i(TAG, "点击了消息");
             } else if (menuItem.getItemId() == R.id.item_personal_center) {
                 onDisplayFragment = personFragment;
+                Log.i(TAG, "点击了我");
             } else {
                 return false;
             }

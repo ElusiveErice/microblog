@@ -13,6 +13,7 @@ public abstract class SimpleFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(getLayoutRes(), container, false);
         findView(v);
+        initView();
         initListener();
         return v;
     }
@@ -22,6 +23,7 @@ public abstract class SimpleFragment extends Fragment {
     protected void findView(View v) {
     }
 
+    protected void initView(){}
     protected void initListener() {
     }
 }
