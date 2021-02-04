@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/item_microblog_list"
+        android:icon="@drawable/ic_microblog_list"
+        android:title="@string/homepage">
+    </item>
+    <item
+        android:id="@+id/item_message"
+        android:icon="@drawable/ic_message"
+        android:title="@string/message">
+    </item>
+    <item
+        android:id="@+id/item_personal_center"
+        android:icon="@drawable/ic_personal_center"
+        android:title="@string/me">
+    </item>
+</menu>

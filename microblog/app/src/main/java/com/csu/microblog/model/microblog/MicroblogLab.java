@@ -21,17 +21,22 @@ public class MicroblogLab {
         return sMicroblogLab;
     }
 
-    private MicroblogLab(Context context){
+    private MicroblogLab(Context context) {
         mMicroblogs = new ArrayList<>();
+
+        //TODO 暂时模拟10个微博
+        for (int i = 0; i < 10; i++) {
+            mMicroblogs.add(new Microblog());
+        }
     }
 
-    public List<Microblog> getMicroblogs(){
+    public List<Microblog> getMicroblogs() {
         return mMicroblogs;
     }
 
-    public Microblog getMicroblog(long microblogId){
-        for(Microblog microblog:mMicroblogs){
-            if(microblog.getMicroblogId()== microblogId){
+    public Microblog getMicroblog(long microblogId) {
+        for (Microblog microblog : mMicroblogs) {
+            if (microblog.getMicroblogId() == microblogId) {
                 return microblog;
             }
         }

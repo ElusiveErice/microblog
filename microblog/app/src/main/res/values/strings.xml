@@ -53,4 +53,6 @@
     <string name="error_password_confirm">密码确认错误</string>
     <string name="loading">正在登录中</string>
     <string name="confirm">确认</string>
+    <string name="homepage">首页</string>
+    <string name="like">赞</string>
 </resources>

@@ -3,13 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.csu.microblog">
 
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission
-        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
-        tools:ignore="ScopedStorage" />
-
     <application
         android:name=".MainApplication"
         android:allowBackup="true"
@@ -20,26 +13,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Microblog"
         tools:targetApi="n">
-        <activity android:name=".MainActivity">
-
-        </activity>
         <activity android:name=".activities.LoginActivity">
+            <intent-filter tools:node="removeAll" />
+        </activity>
+        <activity android:name=".DebugLoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.RegisterActivity">
 
-        </activity>
-        <activity android:name=".activities.HomepageActivity">
-
-        </activity>
-
-        <activity android:name=".activities.RegisterSuccessActivity">
-
-        </activity>
 
     </application>
 
