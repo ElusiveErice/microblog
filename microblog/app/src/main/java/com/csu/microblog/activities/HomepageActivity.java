@@ -1,7 +1,6 @@
 package com.csu.microblog.activities;
 
 import android.os.Bundle;
-import android.widget.RadioButton;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -12,6 +11,7 @@ import com.csu.microblog.R;
 import com.csu.microblog.fragments.MessageFragment;
 import com.csu.microblog.fragments.MicroblogListFragment;
 import com.csu.microblog.fragments.PersonFragment;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class HomepageActivity extends FragmentActivity {
 
@@ -21,26 +21,22 @@ public class HomepageActivity extends FragmentActivity {
     private Fragment messageFragment;
     private Fragment personFragment;
 
-    private RadioButton mRBMicroblogList;
-    private RadioButton mRBMessageList;
-    private RadioButton mRBPerson;
+    private BottomNavigationView mBottomNavigationView;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_homepage);
         findView();
-        findFragment();
         initFragment();
+        initListener();
     }
 
-    protected void findView() {
-        mRBMicroblogList = (RadioButton) findViewById(R.id.rb_list);
-        mRBMessageList = (RadioButton) findViewById(R.id.rb_message);
-        mRBPerson = (RadioButton) findViewById(R.id.rb_person);
+    private void findView() {
+        mBottomNavigationView = findViewById(R.id.navigation);
     }
 
-    protected void findFragment() {
+    private void initFragment() {
         fragmentManager = getSupportFragmentManager();
         microblogListFragment = new MicroblogListFragment();
         messageFragment = new MessageFragment();
@@ -49,25 +45,30 @@ public class HomepageActivity extends FragmentActivity {
         if (onDisplayFragment == null) {
             onDisplayFragment = microblogListFragment;
         }
-    }
 
-    protected void initFragment() {
+        //默认加载第一个首页Fragment
         fragmentManager.beginTransaction()
                 .add(R.id.fragment_container, onDisplayFragment)
                 .commit();
-
-        mRBMicroblogList.setOnClickListener(v -> setFragment(microblogListFragment));
-
-        mRBMessageList.setOnClickListener(v -> setFragment(messageFragment));
-
-        mRBPerson.setOnClickListener(v -> setFragment(personFragment));
     }
 
+    private void initListener() {
+        mBottomNavigationView.setOnNavigationItemSelectedListener(menuItem -> {
 
-    protected void setFragment(Fragment fragment) {
-        onDisplayFragment = fragment;
-        fragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, onDisplayFragment)
-                .commit();
+            if (menuItem.getItemId() == R.id.item_microblog_list) {
+                onDisplayFragment = microblogListFragment;
+            } else if (menuItem.getItemId() == R.id.item_message) {
+                onDisplayFragment = messageFragment;
+            } else if (menuItem.getItemId() == R.id.item_personal_center) {
+                onDisplayFragment = personFragment;
+            } else {
+                return false;
+            }
+
+            fragmentManager.beginTransaction()
+                    .replace(R.id.fragment_container, onDisplayFragment)
+                    .commit();
+            return true;
+        });
     }
 }
