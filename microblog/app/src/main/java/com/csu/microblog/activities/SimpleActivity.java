@@ -2,13 +2,11 @@ package com.csu.microblog.activities;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.view.View;
 import android.view.WindowManager;
 
 import androidx.annotation.Nullable;
-import androidx.fragment.app.FragmentActivity;
 
-public abstract class SimpleActivity extends FragmentActivity {
+public abstract class SimpleActivity extends Activity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -19,12 +17,12 @@ public abstract class SimpleActivity extends FragmentActivity {
         initListener();
     }
 
-    protected void initListener(){
-
+    protected void initListener() {
     }
 
     protected abstract int getContentView();
 
-    protected abstract void findView();
+    protected void findView() {
+    }
 
 }

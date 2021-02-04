@@ -1,12 +1,11 @@
 package com.csu.microblog.activities;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RelativeLayout;
 
 import androidx.annotation.Nullable;
 
@@ -30,7 +29,6 @@ public class LoginActivity extends SimpleActivity {
     private Button mBTLogin;
     private EditText mETAccount;
     private EditText mETPassword;
-    private RelativeLayout mRLLoading;
 
     @Override
     protected int getContentView() {
@@ -43,36 +41,36 @@ public class LoginActivity extends SimpleActivity {
         mBTLogin = (Button) findViewById(R.id.bt_login);
         mETAccount = (EditText) findViewById(R.id.input_account);
         mETPassword = (EditText) findViewById(R.id.input_password);
-        mRLLoading = (RelativeLayout) findViewById(R.id.rl_loading);
     }
 
 
     private void handleLogin(String account, String password) {
-        mRLLoading.setVisibility(View.VISIBLE);
+        Dialog loadingDialog = SimpleViewBuilder.newMessageDialog(this, "正在登录中", false);
+        loadingDialog.show();
         RetrofitManager.getRetrofitManager()
                 .getMicroblogRetrofit()
                 .create(UserService.class)
                 .login(Long.parseLong(account), password)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<ResponseBody>() {
+                .subscribe(new Observer<ResponseBody<LoginData>>() {
                     @Override
                     public void onCompleted() {
-                        mRLLoading.setVisibility(View.GONE);
+                        loadingDialog.dismiss();
                     }
 
                     @Override
                     public void onError(Throwable e) {
                         Log.e(TAG, e.toString());
-                        mRLLoading.setVisibility(View.GONE);
+
+                        //关闭加载的dialog，并显示错误信息的dialog
+                        loadingDialog.dismiss();
+                        SimpleViewBuilder.newConfirmDialog(LoginActivity.this, "网络异常").show();
                     }
 
                     @Override
                     public void onNext(ResponseBody responseBody) {
                         int code = responseBody.getCode();
-                        if (responseBody == null) {
-                            Log.i(TAG, "Error");
-                        }
 
                         if (code != 0) {
                             Log.e(TAG, responseBody.getMessage());
@@ -89,7 +87,7 @@ public class LoginActivity extends SimpleActivity {
                             } else {
                                 mETPassword.setText("");
                                 mETPassword.setHint("");
-                                SimpleViewBuilder.newMessageDialog(LoginActivity.this, result.getMessage()).show();
+                                SimpleViewBuilder.newConfirmDialog(LoginActivity.this, result.getMessage()).show();
                                 Log.e(TAG, "登录失败:" + result.getMessage());
                             }
                         }
@@ -99,7 +97,6 @@ public class LoginActivity extends SimpleActivity {
 
     @Override
     protected void initListener() {
-        mRLLoading.setOnClickListener(null);
         mBTRegister.setOnClickListener(v -> {
             Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
             startActivity(intent);
@@ -132,8 +129,3 @@ public class LoginActivity extends SimpleActivity {
         }
     }
 }
-
-
-//TODO
-//点击登录后改用dialog来做loading
-//后端返回登录失败改用Dialog来通知

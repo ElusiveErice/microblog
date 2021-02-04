@@ -1,27 +1,25 @@
 package com.csu.microblog.fragments;
 
 
-import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-
-import androidx.fragment.app.Fragment;
+import android.widget.ImageButton;
 
 import com.csu.microblog.R;
 
-public class MicroblogListFragment extends Fragment {
+public class MicroblogListFragment extends SimpleFragment {
+
+    private ImageButton mIBTRefresh;
+    private ImageButton mIBTAdd;
 
     @Override
-    public void onCreate(Bundle savedInstanceState){
-        super.onCreate(savedInstanceState);
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState){
-        View v = inflater.inflate(R.layout.fragment_microblog_list,container,false);
-        return v;
+    protected int getLayoutRes() {
+        return R.layout.fragment_microblog_list;
     }
 
 
+    @Override
+    protected void findView(View v) {
+        mIBTRefresh = (ImageButton) v.findViewById(R.id.ibt_refresh);
+        mIBTAdd = (ImageButton) v.findViewById(R.id.ibt_add);
+    }
 }
