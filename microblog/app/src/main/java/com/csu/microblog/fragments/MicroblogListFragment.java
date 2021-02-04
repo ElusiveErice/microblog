@@ -1,7 +1,6 @@
 package com.csu.microblog.fragments;
 
 
-import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -17,7 +15,6 @@ import com.csu.microblog.R;
 import com.csu.microblog.model.microblog.Microblog;
 import com.csu.microblog.model.microblog.MicroblogLab;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class MicroblogListFragment extends SimpleFragment {
@@ -37,9 +34,9 @@ public class MicroblogListFragment extends SimpleFragment {
 
     @Override
     protected void findView(View v) {
-        mIBTRefresh = (ImageButton) v.findViewById(R.id.ibt_refresh);
-        mIBTAdd = (ImageButton) v.findViewById(R.id.ibt_add);
-        mRVMicroblogs = (RecyclerView) v.findViewById(R.id.rv_microblogs);
+        mIBTRefresh = v.findViewById(R.id.ibt_refresh);
+        mIBTAdd = v.findViewById(R.id.ibt_add);
+        mRVMicroblogs = v.findViewById(R.id.rv_microblogs);
     }
 
     @Override

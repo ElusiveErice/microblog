@@ -1,4 +1,4 @@
-package com.csu.microblog.activities;
+package com.csu.microblog;
 
 import android.app.Dialog;
 import android.content.Intent;
@@ -9,8 +9,9 @@ import android.widget.EditText;
 
 import androidx.annotation.Nullable;
 
-import com.csu.microblog.MainApplication;
-import com.csu.microblog.R;
+import com.csu.microblog.activities.HomepageActivity;
+import com.csu.microblog.activities.RegisterActivity;
+import com.csu.microblog.activities.SimpleActivity;
 import com.csu.microblog.model.ResponseBody;
 import com.csu.microblog.model.user.LoginData;
 import com.csu.microblog.retrofit.RetrofitManager;
@@ -21,9 +22,8 @@ import rx.Observer;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
-public class LoginActivity extends SimpleActivity {
-
-    public static final String TAG = "LoginActivity";
+public class DebugLoginActivity extends SimpleActivity {
+    public static final String TAG = "DebugLoginActivity";
 
     private Button mBTRegister;
     private Button mBTLogin;
@@ -65,7 +65,7 @@ public class LoginActivity extends SimpleActivity {
 
                         //关闭加载的dialog，并显示错误信息的dialog
                         loadingDialog.dismiss();
-                        SimpleViewBuilder.newConfirmDialog(LoginActivity.this, "网络异常").show();
+                        SimpleViewBuilder.newConfirmDialog(DebugLoginActivity.this, "网络异常").show();
                     }
 
                     @Override
@@ -81,13 +81,13 @@ public class LoginActivity extends SimpleActivity {
                                 MainApplication mainApplication = (MainApplication) getApplication();
                                 mainApplication.setAccount(result.getAccount());
                                 mainApplication.setLogin(true);
-                                Intent intent = new Intent(LoginActivity.this, HomepageActivity.class);
+                                Intent intent = new Intent(DebugLoginActivity.this, HomepageActivity.class);
                                 startActivity(intent);
-                                LoginActivity.this.finish();
+                                DebugLoginActivity.this.finish();
                             } else {
                                 mETPassword.setText("");
                                 mETPassword.setHint("");
-                                SimpleViewBuilder.newConfirmDialog(LoginActivity.this, result.getMessage()).show();
+                                SimpleViewBuilder.newConfirmDialog(DebugLoginActivity.this, result.getMessage()).show();
                                 Log.e(TAG, "登录失败:" + result.getMessage());
                             }
                         }
@@ -98,16 +98,23 @@ public class LoginActivity extends SimpleActivity {
     @Override
     protected void initListener() {
         mBTRegister.setOnClickListener(v -> {
-            Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+            Intent intent = new Intent(DebugLoginActivity.this, RegisterActivity.class);
             startActivity(intent);
         });
         mBTLogin.setOnClickListener(v -> {
 
             String account = mETAccount.getText().toString();
             String password = mETPassword.getText().toString();
+
             if (account.equals("")) {
-                mETAccount.setHint(R.string.error_account_null);
-                mETAccount.setHintTextColor(getResources().getColor(R.color.red));
+                //如果不输入账号则直接以开放人员身份登录
+                MainApplication mainApplication = (MainApplication) getApplication();
+                mainApplication.setAccount(0);
+                mainApplication.setLogin(true);
+                Intent intent = new Intent(DebugLoginActivity.this, HomepageActivity.class);
+                startActivity(intent);
+                Log.i(TAG, "以开放人员身份登录");
+                DebugLoginActivity.this.finish();
             } else if (password.equals("")) {
                 mETPassword.setHint(R.string.error_password_null);
                 mETPassword.setHintTextColor(getResources().getColor(R.color.red));
@@ -123,7 +130,7 @@ public class LoginActivity extends SimpleActivity {
 
         MainApplication app = (MainApplication) getApplication();
         if (app.isLogin()) {
-            Intent intent = new Intent(LoginActivity.this, HomepageActivity.class);
+            Intent intent = new Intent(DebugLoginActivity.this, HomepageActivity.class);
             startActivity(intent);
             this.finish();
         }
